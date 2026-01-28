@@ -1,3 +1,4 @@
+## basic
 add pdf splitter
 pdf compressor
 Glob support: pdfmerge *.pdf -o output.pdf
@@ -20,15 +21,31 @@ Bookmark generation:
 Smart filtering:
     # Only merge files > 1MB
     pdfmerge *.pdf --min-size 1MB -o output.pdf
-
     # Merge newest 5 files
     pdfmerge *.pdf --newest 5 -o output.pdf
 Page manipulation:
     # Rotate every 2nd page
     pdfmerge *.pdf --rotate-even 90 -o output.pdf
-
     # Insert blank pages between files
     pdfmerge *.pdf --separators -o output.pdf
 Watermarking:
     pdfmerge *.pdf --watermark "CONFIDENTIAL" -o output.pdf
     pdfmerge *.pdf --watermark-file stamp.pdf -o output.pdf
+Split during merge:
+    # Split output by page count
+    pdfmerge *.pdf --split-every 50 -o output_prefix
+    # Split by file size
+    pdfmerge *.pdf --max-size 10MB -o output_prefix
+Progress indicators:
+    pdfmerge large*.pdf -o output.pdf --progress --verbose
+
+
+## Output & Format Options
+Multiple output formats:
+    pdfmerge *.pdf -o report --format pdfa  # PDF/A for archiving
+    pdfmerge *.pdf -o images --format png   # Extract pages as images
+Batch processing:
+    # Process multiple merge jobs from a file
+    pdfmerge --batch jobs.txt
+Validation & repair:
+    pdfmerge corrupted.pdf -o fixed.pdf --repair
