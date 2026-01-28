@@ -1,1 +1,7 @@
 venv/
+node_modules/
+package.json
+git-config.json
+pnpm-lock.yaml
+dice.config.ts
+.husky
